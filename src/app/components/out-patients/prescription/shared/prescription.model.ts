@@ -47,6 +47,7 @@ export interface ResponseDatas {
     rbs:string,
     allergies:string,
     general:string,
+    address:string,
 }
 
 export interface Prescription {
@@ -101,4 +102,6 @@ export interface Inputs {
     allergies:string,
     general:string,
     remark:string,
+    address:string,
+
 }

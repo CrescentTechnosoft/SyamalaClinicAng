@@ -143,6 +143,7 @@ export class PrescService {
       treatment: '',
       spo2: '',
       temp: '',
+      address: '',
       past: '',
       allergies: '',
       general: '',

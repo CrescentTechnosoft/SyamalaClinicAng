@@ -220,6 +220,7 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
           this.inputs.name = d.data.name;
           this.inputs.age = d.data.age;
           this.inputs.gender = d.data.gender;
+          this.inputs.address = d.data.address;
           this.inputs.consultant = d.data.consultant;
           this.inputs.height = d.data.height;
           this.inputs.weight = d.data.weight;

@@ -6,13 +6,11 @@
             <div class="col-lg-2 col-6">
                 <label class="badge">
                     OP Year</label>
-                <select class="form-control form-control-sm" *ngIf='!isEditable' [(ngModel)]='inputs.year'
-                    (change)='getOPNos()'>
+                <select class="form-control form-control-sm" *ngIf='!isEditable' [(ngModel)]='inputs.year' (change)='getOPNos()'>
                     <option value="">Select</option>
                     <option *ngFor='let year of years'>{{year}}</option>
                 </select>
-                <select class="form-control form-control-sm" *ngIf='isEditable' [(ngModel)]='inputs.prYear'
-                    (change)='getPrescNos()'>
+                <select class="form-control form-control-sm" *ngIf='isEditable' [(ngModel)]='inputs.prYear' (change)='getPrescNos()'>
                     <option value="">Select</option>
                     <option *ngFor='let year of years'>{{year}}</option>
                 </select>
@@ -20,14 +18,12 @@
             <div class="col-lg-2 col-6">
                 <label class="badge">
                     OP No</label>
-                <select class="form-control form-control-sm" *ngIf='!isEditable' [(ngModel)]='inputs.id'
-                    (change)='getObservationDetails()'>
-                    <option value="">Select</option>
+                <select class="form-control form-control-sm" *ngIf='!isEditable' [(ngModel)]='inputs.id' (change)='getObservationDetails()'>
+                    <option value="">--Select--</option>
                     <option *ngFor='let opNo of opNos' [value]='opNo.id'>{{opNo.opNo+' '+opNo.name}}</option>
                 </select>
-                <select class="form-control form-control-sm" *ngIf='isEditable' [(ngModel)]='inputs.prId'
-                    (change)='getPrescriptions()'>
-                    <option value="">Select</option>
+                <select class="form-control form-control-sm" *ngIf='isEditable' [(ngModel)]='inputs.prId' (change)='getPrescriptions()'>
+                    <option value="">--Select--</option>
                     <option *ngFor='let opNo of prescNos' [value]='opNo.id'>{{opNo.opNo+' '+opNo.name}}</option>
                 </select>
             </div>
@@ -59,6 +55,13 @@
                     Consultant</label>
                 <input class="form-control form-control-sm" [value]='inputs.consultant' readonly />
             </div>
+            <div class="col-lg-3">
+                <label class="badge">
+                    Address</label>
+                <textarea class="form-control form-control-sm" [value]='inputs.address' readonly>
+
+                </textarea>
+            </div>
         </div>
     </div>
     <hr>
@@ -73,24 +76,24 @@
             <div class=" col-lg-2">
                 <label class="badge">
                     Weight</label>
-                <input class="form-control form-control-sm" [(ngModel)]='inputs.weight'  />
+                <input class="form-control form-control-sm" [(ngModel)]='inputs.weight' />
             </div>
             <div class="col-lg-2">
                 <label class="badge">
                     TEMP</label>
-                <input class="form-control form-control-sm" [(ngModel)]='inputs.temp'  />
+                <input class="form-control form-control-sm" [(ngModel)]='inputs.temp' />
             </div>
             <div class="col-lg-2">
                 <label class="badge">
                     BP</label>
                 <br />
-                <input class="form-control form-control-sm" [(ngModel)]='inputs.bp'  />
+                <input class="form-control form-control-sm" [(ngModel)]='inputs.bp' />
             </div>
             <div class="col-lg-2">
                 <label class="badge">
                     Spo2</label>
                 <br />
-                <input class="form-control form-control-sm" [(ngModel)]='inputs.spo2'  />
+                <input class="form-control form-control-sm" [(ngModel)]='inputs.spo2' />
             </div>
             <div class="col-lg-2">
                 <label class="badge">RBS</label>
@@ -119,17 +122,15 @@
                     </h2>
                 </div> -->
                 <!-- <div id="collapseDescription" class="collapse show" aria-labelledby="headingDesription" -->
-                    <!-- data-parent="#accordion"> -->
-                    <div class="card-body">
-                        <div class="row mt-2">
-                            <div class="col-md-5">
-                                <label class="badge">Complaint</label>
-                                <div class="input-group">
-                                    <textarea class="form-control form-control-sm" cols="1" rows="3"
-                                        [(ngModel)]='inputs.complaint' id="txtComplaints"
-                                        (blur)='this.inputs.complaint=$event.target.value'></textarea>
-                                    <!-- (keyup)='addComplaints($event,$event.target.value)' -->
-                                    <!-- <div class="input-group-append">
+                <!-- data-parent="#accordion"> -->
+                <div class="card-body">
+                    <div class="row mt-2">
+                        <div class="col-md-5">
+                            <label class="badge">Complaint</label>
+                            <div class="input-group">
+                                <textarea class="form-control form-control-sm" cols="1" rows="3" [(ngModel)]='inputs.complaint' id="txtComplaints" (blur)='this.inputs.complaint=$event.target.value'></textarea>
+                                <!-- (keyup)='addComplaints($event,$event.target.value)' -->
+                                <!-- <div class="input-group-append">
                                         <button class="btn btn-sm btn-outline-primary mr-0" (click)='createComplaint()'>
                                             <i class="fa fa-plus"></i>
                                         </button>
@@ -139,37 +140,35 @@
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div> -->
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <mat-chip-list>
-                                            <mat-chip selected *ngFor='let complaint of complaints;let ind=index;'
-                                                [removable]='true' (removed)='removeComplaint(ind)'>
-                                                {{complaint}}
-                                                <mat-icon matChipRemove>cancel</mat-icon>
-                                            </mat-chip>
-                                        </mat-chip-list>
-                                    </div>
-                                </div>
                             </div>
-
-                            <div class="col-md-5">
-                                <label class="badge">Past history</label>
-                                <textarea cols="3" rows="3" class="form-control" [(ngModel)]='inputs.past'></textarea>
-                            </div>
-                            <div class="col-md-2">
-                                <label class="badge">Allergies</label>
-                                <input type="text" class="form-control" [(ngModel)]='inputs.allergies'>
+                            <div class="row">
+                                <div class="col">
+                                    <mat-chip-list>
+                                        <mat-chip selected *ngFor='let complaint of complaints;let ind=index;' [removable]='true' (removed)='removeComplaint(ind)'>
+                                            {{complaint}}
+                                            <mat-icon matChipRemove>cancel</mat-icon>
+                                        </mat-chip>
+                                    </mat-chip-list>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <label class="badge">General Examination </label>
-                                <textarea cols="3" rows="3" class="form-control"
-                                    [(ngModel)]='inputs.general'></textarea>
-                            </div>
+
+                        <div class="col-md-5">
+                            <label class="badge">Past history</label>
+                            <textarea cols="3" rows="3" class="form-control" [(ngModel)]='inputs.past'></textarea>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="badge">Allergies</label>
+                            <input type="text" class="form-control" [(ngModel)]='inputs.allergies'>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label class="badge">General Examination </label>
+                            <textarea cols="3" rows="3" class="form-control" [(ngModel)]='inputs.general'></textarea>
+                        </div>
+                    </div>
+                </div>
                 <!-- </div> -->
             </div>
             <div class="card background-All">
@@ -178,8 +177,8 @@
                         <!-- <button class="d-flex align-items-center justify-content-between btn btn-link collapsed btn1"
                             data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                             aria-controls="collapseTwo"> -->
-                            Advice Investigation
-                            <!-- <span class="fa-stack fa-2x">
+                        Advice Investigation
+                        <!-- <span class="fa-stack fa-2x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
                             </span>
@@ -187,23 +186,21 @@
                     </h2>
                 </div>
                 <!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion"> -->
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <input id="txtInvestigation" class="form-control form-control-sm"
-                                    (keyup)='addInvestigation($event)' placeholder="Investigation">
-                            </div>
-                            <div class="col">
-                                <mat-chip-list>
-                                    <mat-chip selected *ngFor='let investigation of investigations;let ind=index;'
-                                        [removable]='true' (removed)='removeInvestigation(ind)'>
-                                        {{investigation}}
-                                        <mat-icon matChipRemove>cancel</mat-icon>
-                                    </mat-chip>
-                                </mat-chip-list>
-                            </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input id="txtInvestigation" class="form-control form-control-sm" (keyup)='addInvestigation($event)' placeholder="Investigation">
+                        </div>
+                        <div class="col">
+                            <mat-chip-list>
+                                <mat-chip selected *ngFor='let investigation of investigations;let ind=index;' [removable]='true' (removed)='removeInvestigation(ind)'>
+                                    {{investigation}}
+                                    <mat-icon matChipRemove>cancel</mat-icon>
+                                </mat-chip>
+                            </mat-chip-list>
                         </div>
                     </div>
+                </div>
                 <!-- </div> -->
             </div>
             <div class="card background-All">
@@ -221,15 +218,14 @@
                     </h2>
                 </div> -->
                 <!-- <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion"> -->
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label class="badge">
-                                    Diagnosis</label>
-                                <textarea class="form-control form-control-sm"
-                                    [(ngModel)]='inputs.diagnosis'></textarea>
-                            </div>
-                            <!-- <div class="col">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="badge">
+                                Diagnosis</label>
+                            <textarea class="form-control form-control-sm" [(ngModel)]='inputs.diagnosis'></textarea>
+                        </div>
+                        <!-- <div class="col">
                                 <mat-chip-list>
                                     <mat-chip selected *ngFor='let investigation of investigations;let ind=index;'
                                         [removable]='true' (removed)='removeInvestigation(ind)'>
@@ -238,8 +234,8 @@
                                     </mat-chip>
                                 </mat-chip-list>
                             </div> -->
-                        </div>
                     </div>
+                </div>
                 <!-- </div> -->
             </div>
             <!-- <div class="card background-All">
@@ -295,8 +291,8 @@
                         <!-- <button class="d-flex align-items-center justify-content-between collapsed btn btn-link btn1"
                             data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
                             aria-controls="collapseOne"> -->
-                            Advice Medicine
-                            <!-- <span class="fa-stack fa-sm">
+                        Advice Medicine
+                        <!-- <span class="fa-stack fa-sm">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-plus fa-stack-1x fa-inverse" id="firstFa"></i>
                             </span> -->
@@ -305,15 +301,13 @@
                 </div>
 
                 <!-- <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"> -->
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4 col-md-3">
-                                <label class="badge">Drugs</label>
-                                <input id="txtMedicine" class="form-control form-control-sm"
-                                    [(ngModel)]='inputs.medicine' (keyup)='focusElement($event,"dosage")'
-                                    (blur)='inputs.medicine=$event.target.value' />
-                            </div>
-                            <!-- <div class="col-4 col-md-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4 col-md-3">
+                            <label class="badge">Drugs</label>
+                            <input id="txtMedicine" class="form-control form-control-sm" [(ngModel)]='inputs.medicine' (keyup)='focusElement($event,"dosage")' (blur)='inputs.medicine=$event.target.value' />
+                        </div>
+                        <!-- <div class="col-4 col-md-2">
                                 <label class="badge">Food Type</label>
                                 <select class="form-control form-control-sm fType" [(ngModel)]='inputs.fType'
                                     onkeypress="return !event.keyCode===13" (keyup)='focusElement($event,"dosage")'>
@@ -322,78 +316,72 @@
                                 </select>
                                 
                             </div> -->
-                            <div class="col-4 col-md-2">
-                                <label class="badge">Dosage</label>
-                                <!-- <select class="form-control form-control-sm dosage" [(ngModel)]='inputs.dosage'
+                        <div class="col-4 col-md-2">
+                            <label class="badge">Dosage</label>
+                            <!-- <select class="form-control form-control-sm dosage" [(ngModel)]='inputs.dosage'
                                     onkeypress="return !event.keyCode===13" (keyup)='focusElement($event,"period")'>
                                     <option *ngFor='let dosage of dosages'>{{dosage}}</option>
                                 </select> -->
-                                <input id="txtDosage" class="form-control form-control-sm dosage"
-                                    [(ngModel)]='inputs.dosage' (keyup)='focusElement($event,"period")'
-                                    (blur)='inputs.dosage=$event.target.value' />
-                            </div>
-                            <div class="col-4 col-md-2">
-                                <label class="badge">Period</label>
-                                <input class="form-control form-control-sm period"
-                                    (keyup)='focusElement($event,"remark")' [(ngModel)]='inputs.period' />
-                            </div>
-                            <div class="col-4 col-md-2">
-                                <label class="badge">Remarks</label>
-                                <input type="text" class="form-control form-control-sm remark"
-                                    [(ngModel)]='inputs.remark' (keyup)='AddMedicine($event)' />
-                            </div>
-                            <!-- <div class="col-4 col-md-2">
+                            <input id="txtDosage" class="form-control form-control-sm dosage" [(ngModel)]='inputs.dosage' (keyup)='focusElement($event,"period")' (blur)='inputs.dosage=$event.target.value' />
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <label class="badge">Period</label>
+                            <input class="form-control form-control-sm period" (keyup)='focusElement($event,"remark")' [(ngModel)]='inputs.period' />
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <label class="badge">Remarks</label>
+                            <input type="text" class="form-control form-control-sm remark" [(ngModel)]='inputs.remark' (keyup)='AddMedicine($event)' />
+                        </div>
+                        <!-- <div class="col-4 col-md-2">
                                 <label class="badge">Days</label>
                                 <input type="number" class="form-control form-control-sm days" [(ngModel)]='inputs.days'
                                 />
                             </div> -->
-                            <!-- <div class="col-4 col-md-2">
+                        <!-- <div class="col-4 col-md-2">
                                 <label class="badge">Qty</label>
                                 <input type="number" class="form-control form-control-sm days" [(ngModel)]='inputs.qty'
                                     (keyup)='AddMedicine($event)' />
                             </div> -->
-                            <div class=" col-lg-12">
-                                <br />
-                                <div class="table-responsive" style="max-height: 500px;">
-                                    <table id="tblMedicines" class="table table-hover table-bordered table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th>Drugs</th>
-                                                <!-- <th>Food Type</th> -->
-                                                <th>Dosage</th>
-                                                <th>Period</th>
-                                                <th>Remarks</th>
-                                                <!-- <th>Qty</th> -->
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor='let medicine of medicines;let ind=index;'>
-                                                <td>{{medicine.medicine}}</td>
-                                                <!-- <td>{{medicine.type}}</td> -->
-                                                <td>{{medicine.dosage}}</td>
-                                                <td>{{medicine.period}}</td>
-                                                <td>{{medicine.remark}}</td>
-                                                <!-- <td>{{medicine.days}}</td> -->
-                                                <!-- <td>{{medicine.qty}}</td> -->
+                        <div class=" col-lg-12">
+                            <br />
+                            <div class="table-responsive" style="max-height: 500px;">
+                                <table id="tblMedicines" class="table table-hover table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Drugs</th>
+                                            <!-- <th>Food Type</th> -->
+                                            <th>Dosage</th>
+                                            <th>Period</th>
+                                            <th>Remarks</th>
+                                            <!-- <th>Qty</th> -->
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor='let medicine of medicines;let ind=index;'>
+                                            <td>{{medicine.medicine}}</td>
+                                            <!-- <td>{{medicine.type}}</td> -->
+                                            <td>{{medicine.dosage}}</td>
+                                            <td>{{medicine.period}}</td>
+                                            <td>{{medicine.remark}}</td>
+                                            <!-- <td>{{medicine.days}}</td> -->
+                                            <!-- <td>{{medicine.qty}}</td> -->
 
-                                                <td><button mat-mini-fab color='warn' (click)='RemoveMedicine(ind)'><i
-                                                            class="material-icons">delete</i></button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            <td><button mat-mini-fab color='warn' (click)='RemoveMedicine(ind)'><i class="material-icons">delete</i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+                </div>
                 <!-- </div> -->
             </div>
             <div class="row">
                 <div class="col-lg-6 col-8">
                     <div class="input-group">
                         <label class="badge">Advice</label>
-                        <textarea id="txtTreatment" class="form-control form-control-sm" [(ngModel)]='inputs.treatment'
-                          rows="4" cols="15"   ></textarea>
+                        <textarea id="txtTreatment" class="form-control form-control-sm" [(ngModel)]='inputs.treatment' rows="4" cols="15"></textarea>
                     </div>
                 </div>
             </div>
@@ -401,13 +389,10 @@
     </div>
     <div class="row mt-2">
         <div class="col text-center">
-            <button class="btn btn-success btn-sm" (click)='savePrescription()'
-                [disabled]='isSaving || isEditable'>{{isSaving?'Saving...':'Save'}}</button>
             <button class="btn btn-secondary btn-sm" (click)='view()' [disabled]='isSaving'>View</button>
-            <button class="btn btn-info btn-sm" [disabled]='!isEditable || isUpdating'
-                (click)='updatePrescription()'>{{isUpdating ?'Updating...':'Update'}}</button>
-            <button class="btn btn-danger btn-sm" [disabled]='!isEditable || isDeleting'
-                (click)='deletePrescription()'>{{isDeleting?'Deleting...':'Delete'}}</button>
+            <button class="btn btn-success btn-sm" (click)='savePrescription()' [disabled]='isSaving || isEditable'>{{isSaving?'Saving...':'Save'}}</button>
+            <button class="btn btn-info btn-sm" [disabled]='!isEditable || isUpdating' (click)='updatePrescription()'>{{isUpdating ?'Updating...':'Update'}}</button>
+            <button class="btn btn-danger btn-sm" [disabled]='!isEditable || isDeleting' (click)='deletePrescription()'>{{isDeleting?'Deleting...':'Delete'}}</button>
             <button class="btn btn-primary btn-sm" [disabled]='!isEditable' (click)='printPrescription()'>Print</button>
             <button class="btn btn-warning btn-sm" (click)='clearPage()'>Clear</button>
         </div>
